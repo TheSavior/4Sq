@@ -1,4 +1,5 @@
 require('app/routes/callback_route');
+require('app/routes/map_route');
 
 /*
   The route matching behavior of this
@@ -42,6 +43,8 @@ App.Router.map(function() {
   });
 */
   this.resource("app", {path: "/"});
+
+  this.resource("map");
 
   this.resource("callback", {path: "/callback/:access_token"});
 });

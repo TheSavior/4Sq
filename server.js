@@ -29,7 +29,9 @@ app.get('/callback', function (req, res) {
       res.send('An error was thrown: ' + error.message);
     }
     else {
-      res.redirect('/#/callback/'+accessToken);
+      res.cookie('accessToken', accessToken, { maxAge: 900000, httpOnly: false});
+
+      res.redirect('/#/map');
       //console.log(accessToken);
       //foursquare.Checkins.getRecentCheckins({}, accessToken, checkinCallback);
       // Save the accessToken and redirect.

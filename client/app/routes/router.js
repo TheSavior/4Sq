@@ -45,6 +45,4 @@ App.Router.map(function() {
   this.resource("app", {path: "/"});
 
   this.resource("map");
-
-  this.resource("callback", {path: "/callback/:access_token"});
 });

@@ -1,7 +1,8 @@
 App.MapRoute = Ember.Route.extend({
   model: function() {
     var model = $.getJSON("https://api.foursquare.com/v2/users/self/checkins"+
-      "?oauth_token="+accessToken
+      "?limit=200"+
+      "&oauth_token="+accessToken
       );
     return model;
   },

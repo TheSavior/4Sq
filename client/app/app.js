@@ -8,19 +8,19 @@
  *
  * Each file contains its own commenting, so feel free to crack
  * them open if you want more information about what is going on.
-*/
+ */
 
 /*
  * These are the dependencies for an Ember application
  * and they have to be loaded before any application code.
-*/
+ */
 require('dependencies/jquery-1.8.3');
 
 /*
  * Since we're precompiling our templates, we only need the
  * handlebars-runtime microlib instead of the
  * entire handlebars library and its string parsing functions.
-*/
+ */
 require('dependencies/handlebars-runtime');
 
 /* This is Ember. I think you'll like it */
@@ -35,34 +35,29 @@ require('dependencies/ember');
 */
 require('dependencies/compiled/templates');
 
-window.getCookie = function(c_name)
-{
-var c_value = document.cookie;
-var c_start = c_value.indexOf(" " + c_name + "=");
-if (c_start == -1)
-  {
-  c_start = c_value.indexOf(c_name + "=");
+window.getCookie = function(c_name) {
+  var c_value = document.cookie;
+  var c_start = c_value.indexOf(" " + c_name + "=");
+  if (c_start == -1) {
+    c_start = c_value.indexOf(c_name + "=");
   }
-if (c_start == -1)
-  {
-  c_value = null;
+  if (c_start == -1) {
+    c_value = null;
+  } else {
+    c_start = c_value.indexOf("=", c_start) + 1;
+    var c_end = c_value.indexOf(";", c_start);
+    if (c_end == -1) {
+      c_end = c_value.length;
+    }
+    c_value = unescape(c_value.substring(c_start, c_end));
   }
-else
-  {
-  c_start = c_value.indexOf("=", c_start) + 1;
-  var c_end = c_value.indexOf(";", c_start);
-  if (c_end == -1)
-  {
-c_end = c_value.length;
-}
-c_value = unescape(c_value.substring(c_start,c_end));
-}
-return c_value;
+  return c_value;
 };
 
 window.accessToken = getCookie("accessToken");
 if (!window.accessToken) {
   window.accessToken = null;
+  alert("Not logged in");
 }
 
 /*
@@ -74,10 +69,12 @@ window.App = Ember.Application.create({
   rootElement: '#app-content'
 });
 
+require('app/views/map_view');
+
 /*
  * States (i.e. Routes)
  * Handles serialization of the application's current state
  * which results in view hierarchy updates. Responds to
  * actions.
-*/
+ */
 require('app/routes/router');
